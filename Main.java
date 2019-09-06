@@ -17,6 +17,7 @@ import static java.time.temporal.ChronoUnit.*;
 public class Main {
     private static final String URL = "https://api.privatbank.ua/p24api/exchange_rates?json&date=";
     final static DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+    final static int ARCHIVED_YEARS = 5;
 
     public static void main(String[] args) {
         String strDate;
@@ -28,8 +29,8 @@ public class Main {
         try {
             LocalDate date = LocalDate.parse(strDate, DATE_FORMAT);
             LocalDate today = LocalDate.now();
-            if(today.isAfter(date) || today.isBefore(date.minusYears(4))) {
-                System.out.print("The date should be no later than 4 years");
+            if(today.isAfter(date) || today.isBefore(date.minusYears(ARCHIVED_YEARS))) {
+                System.out.print("The date should be no later than " + ARCHIVED_YEARS + " years");
                 System.out.println(" and should not be more than the current day. Try again.");
                 return;
             }
