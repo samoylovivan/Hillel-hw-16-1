@@ -15,11 +15,10 @@ public class Main {
         date = in.next();
         in.close();
 
-        String json = HttpUtil.sendRequest(URL + date, null, null);
-        Gson gson = new Gson();
-        PrivatResponse response = gson.fromJson(json, PrivatResponse.class);
-
         try {
+            String json = HttpUtil.sendRequest(URL + date, null, null);
+            Gson gson = new Gson();
+            PrivatResponse response = gson.fromJson(json, PrivatResponse.class);
             for (ExchangeRate rate : response.getExchangeRate()) {
                 if ("USD".equals(rate.getCurrency())) {
                     System.out.println("Rate: " + rate.getSaleRateNB());
