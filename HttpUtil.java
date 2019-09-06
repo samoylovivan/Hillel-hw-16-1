@@ -42,8 +42,7 @@ public class HttpUtil {
             }
 
         } catch (Exception e) {
-            // TODO add error handling
-            System.out.println("S   erver responded with an error");
+            System.out.println("Server responded with an error");
         } finally {
             if (urlConnection != null) {
                 urlConnection.disconnect();
